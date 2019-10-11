@@ -1,5 +1,6 @@
 package seedu.address.model.item;
 
+import seedu.address.commons.core.item.Event;
 import seedu.address.commons.core.item.Item;
 
 /**
@@ -20,8 +21,19 @@ public class EventList extends VisualizeList {
             el.add(item);
         }
 
-        el.list.sort((item1, item2) -> item1.getEvent().get().getStartDateTime()
-                .compareTo(item2.getEvent().get().getStartDateTime()));
+        el.list.sort((item1, item2) -> {
+            Event event1 = item1.getEvent().get();
+            Event event2 = item2.getEvent().get();
+
+            int diff = event1.getStartDateTime().compareTo(event2.getStartDateTime());
+
+            if (diff != 0) {
+                return diff;
+            } else {
+                return event1.getPriority().compareTo(event2.getPriority());
+            }
+        });
+        
         return el;
     }
 
