@@ -34,7 +34,7 @@ public class EventList extends VisualizeList {
                 return event1.getPriority().compareTo(event2.getPriority());
             }
         });
-        
+
         return el;
     }
 
