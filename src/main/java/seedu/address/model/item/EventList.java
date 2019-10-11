@@ -12,7 +12,8 @@ public class EventList extends VisualizeList {
     }
 
     /**
-     * Sorts the event list based on the date of the event.
+     * Sorts the event list based on the DTG of the event. If the DTG of the events are the same
+     * they are sorted by priority.
      * @return a sorted EventList of the current list
      */
     public VisualizeList sort() {
@@ -33,7 +34,7 @@ public class EventList extends VisualizeList {
                 return event1.getPriority().compareTo(event2.getPriority());
             }
         });
-        
+
         return el;
     }
 
