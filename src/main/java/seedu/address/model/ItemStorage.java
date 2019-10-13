@@ -3,10 +3,12 @@ package seedu.address.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.item.Item;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.JsonUtil;
@@ -16,17 +18,19 @@ import seedu.address.model.person.exceptions.DuplicateItemException;
  * The central storage of all the items in the program.
  */
 public class ItemStorage {
+    private final Logger logger = LogsCenter.getLogger(ItemStorage.class);
     private ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Adds an item to the item list.
      * @param item the item to be added to the item list.
      */
-    public void add(Item item) throws DuplicateItemException {
+    public void add(Item item) {
         if (items.contains(item)) {
-            throw new DuplicateItemException();
+            logger.info(String.format("Storage already contains %s. Skipping..."));
+        } else {
+            items.add(item);
         }
-        items.add(item);
     }
 
     /**
